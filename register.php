@@ -10,14 +10,25 @@
 </head>
 <body id="body-index">
 
-	<div id="navbar">
-		<ul>
+	<nav class="navbar navbar-expand-sm fixed-top" id="navbar" style="padding: 0;">
+    <ul class="navbar-nav">
         <li><a class="active" href="index.php" id="home">Home</a></li>
         <li><a class="" href="evelist.php" id="evlist">Event List</a></li>
         <li><a class="" href="book.php" id="book">Booking</a></li>
         <li><a class="" href="myprof.php" id="myprof">My Profile</a></li>
-		</ul>
-	</div>
+        <li>
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Query Menus</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="trigger.php">Trigger</a>
+            <a class="dropdown-item" href="function.php">Function</a>
+            <a class="dropdown-item" href="proc.php">Procedure</a>
+            <a class="dropdown-item" href="view.php">View</a>
+            <a class="dropdown-item" href="join.php">Join</a>
+            <a class="dropdown-item" href="cursor.php">Cursor</a>
+          </div>
+        </li>
+    </ul>
+  </nav>
 	<h1 style="position: center; margin-left: 33%; margin-top: 4%; margin-bottom: 3%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Register your Account!</h1>
 	<div id="register">
   	<form action="register-c.php" method="post" id="regis">
