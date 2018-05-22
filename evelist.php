@@ -46,12 +46,47 @@
 	<?php endif; ?>
 	</div>
 	<h1 style="position: center; margin-left: 40%; margin-top: 1%; margin-bottom: 3%; color: white;">List of Event</h1>
-	<div id="evelist" style="margin-left: 20%; margin-top: 3%;margin-bottom: 5%;">
-    	<a href="book.php"><img src="img/ev1.png" id="ev"></a>
-    	<br><br><br><br>
-    	<a href="book.php"><img src="img/ev2.png" id="ev"></a>
+		<div class="container rounded" style="background-color: white; padding: 10px;margin-top: 10%;">
+		<div class="container rounded" style="background-color: #2c3e50;padding: 8px; color: white;">
+		<div class="row">
+				<div class="col-md-2">
+					<img class="img-thumbnail float-left" src="img/thm.jpg">
+				</div>
+				<div class="col-md-6">
+					<h3>CAMP FAIR 2012</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				</div>
+				<div class="col-md-2 panel panel-default">
+					<table class="table" style="border-radius: 6px;">
+						<thead class="thead-light">
+							<tr>
+								<th>Jadwal</th>
+							</tr>
+						</thead>
+						<tbody class="bg-warning">
+							<tr>
+								<td>Gedung Aiola Surabaya</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-md-2">
+					<table class="table">
+						<thead class="thead-light rounded">
+							<tr>
+								<th>Harga</th>
+							</tr>
+						</thead>
+						<tbody class="bg-warning">
+							<tr rows="3">
+								<td>150K - 300K</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
-
 	<script type="text/javascript" src="script.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>
