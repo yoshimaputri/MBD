@@ -6,7 +6,9 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 </head>
 <body id="body-index">
 	<nav class="navbar navbar-expand-sm fixed-top" id="navbar" style="padding: 0;">
@@ -60,7 +62,7 @@
   		<div class="container">
   			<h1 style="position: center; margin-top: 1%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">POST - LOG</h1>
   			<div class="row">
-  			<table class="table table-light table-hover table-inverse">
+  			<table class="table table-light table-hover table-inverse" id="example">
 			    <thead>
 			     	<tr>
 			        	<th>Date</th>
@@ -85,8 +87,7 @@
 			        	echo "<td>" . $row["post_title"] . "</td>";
 			        	echo "<td>" . $row["post_date"] . "</td>";
 			        	echo "<td>" . $row["post_place"] . "</td>";
-			        	echo "<td><button type='button' class='btn btn-danger btn-sm'>Read More</button>";
-			        	echo "</td>";
+			        	?><td><a class="btn btn-danger" href="https://www.google.com"> Read More</a></td><?php
 			     echo "</tr>";
 			      	}
 			    } else{
@@ -131,9 +132,9 @@
 			        	echo "<td>" . $row["size_id"] . "</td>";
 			        	echo "<td>" . $row["book_time"] . "</td>";
 			        	echo "<td>" . $row["book_totalharga"] . "</td>";?>
-			        	<?php if($row["book_status"]==0) : ?><td><button type='button' class='btn btn-dark btn-sm'>Pending</button></td>
-			        	<?php elseif($row["book_status"]==1) : ?><td><button type='button' class='btn btn-success btn-sm'>Paid Off</button></td>
-			        	<?php elseif($row["book_status"]==2) : ?><td><button type='button' class='btn btn-danger btn-sm'>Cancel</button></td>
+			        	<?php if($row["book_status"]==0) : ?><td><a href="#" class='btn btn-dark btn-sm'>Pending</a></td>
+			        	<?php elseif($row["book_status"]==1) : ?><td><a href="#" class='btn btn-success btn-sm'>Paid Off</a></td>
+			        	<?php elseif($row["book_status"]==2) : ?><td><a href="#" class='btn btn-danger btn-sm'>Cancel</a></td>
 			        	<?php endif;
 			     echo "</tr>";
 			      	}
