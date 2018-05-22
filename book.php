@@ -59,28 +59,27 @@
   			<label class="font-weight-bold" for="username">Username</label>
       		<input class="form-control" type="text" id="username" name="username" placeholder="Your username..">
       		<br>
-	    	<label class="font-weight-bold" for="event">Event</label>
+<!-- 	    	<label class="font-weight-bold" for="event">Event</label>
       		<select class="form-control" id="event" name="event">
         	<option value="food_truck_festival">Food Truck Festival</option>
         	<option value="campus_fair">Campus Fair</option>
-      		</select>
+      		</select> -->
       		<br>
       		<label class="font-weight-bold" for="size">Stand Size</label>
       		<select class="form-control" id="size" name="size">
-        	<option value="small">Small</option>
-        	<option value="medium">Medium</option>
-        	<option value="large">Large</option>
+        	<option value="S">Small</option>
+        	<option value="M">Medium</option>
+        	<option value="L">Large</option>
       		</select>
       		<br>
       		<label class="font-weight-bold" for="type">Product Type</label>
       		<select class="form-control" id="type" name="type">
-        	<option value="food_and_drink">Food & Drink</option>
-        	<option value="accesories">Accesories</option>
-        	<option value="clothes">Clothes</option>
-        	<option value="fresh_material">Fresh Material</option>
-        	<option value="technology">Technology</option>
-        	<option value="daily_equipment">Daily Equipment</option>
-      		</select>
+        	<option value="t02">Food & Drink</option>
+        	<option value="t04">Merchandise</option>
+        	<option value="t01">Clothes</option>
+        	<option value="t03">Education</option>
+        	<option value="t05">Property & Marketing</option>
+        	</select>
       		<br>
       		<label class="font-weight-bold" for="pwd">Retype Password</label>
       		<input class="form-control" type="password" id="passwor2" name="password2" placeholder="Your secret password..">

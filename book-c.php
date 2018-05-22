@@ -4,7 +4,7 @@
 	$db = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
 	$target_dir = "uploads/";
 	$target_file = $target_dir . basename($_FILES["image"]["name"]);
-	$result = $db->query('SELECT * FROM users WHERE username = "'.$_POST['username'].'" AND password = MD5("'.$_POST['password2'].'")');
+	$result = $db->query('SELECT * FROM user WHERE user_name = "'.$_POST['username'].'" AND user_pwd = "'.$_POST['password2'].'"');
 	$ada = $result->num_rows;
 	$tmp = $_FILES["image"]["tmp_name"];
 	$file_name = $_FILES["image"]["name"];
@@ -14,8 +14,9 @@
         //echo "Sorry, there was an error uploading your file.";
     }
 	if($ada){
+		//$typename = $db->query('SELECT * FROM ')
 		$_SESSION['book']=true;
-		$db->query("INSERT INTO booking (username,event,size,type,imgpath,image) VALUES('{$_POST['username']}','{$_POST['event']}','{$_POST['size']}','{$_POST['type']}','{$target_file}','file_get_contents($tmp)')");
+		$db->query("INSERT INTO booking (book_id,user_id,post_id,type_id,size_id,book_quantity,book_status,book_totalharga) VALUES('b32','u01','p01','{$_POST['type']}','{$_POST['size']}','1','1','0')");
 		header('Location: myprof.php?booking=success');
 		exit();
 	}
