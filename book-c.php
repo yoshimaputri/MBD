@@ -5,6 +5,7 @@
 	$target_dir = "uploads/";
 	$target_file = $target_dir . basename($_FILES["image"]["name"]);
 	$result = $db->query('SELECT * FROM user WHERE user_name = "'.$_POST['username'].'" AND user_pwd = "'.$_POST['password2'].'"');
+	$userid = $result->fetch_assoc();
 	$ada = $result->num_rows;
 	$tmp = $_FILES["image"]["tmp_name"];
 	$file_name = $_FILES["image"]["name"];
@@ -14,10 +15,13 @@
         //echo "Sorry, there was an error uploading your file.";
     }
 	if($ada){
-		//$typename = $db->query('SELECT * FROM ')
+		$bookid = $db->query('SELECT COUNT(book_id)+1 as total FROM booking');
+		$data = $bookid->fetch_assoc();
+		$bookid = "b".$data['total'];
+		$date = date('Y-m-d');
 		$_SESSION['book']=true;
-		$db->query("INSERT INTO booking (book_id,user_id,post_id,type_id,size_id,book_quantity,book_status,book_totalharga) VALUES('b32','u01','p01','{$_POST['type']}','{$_POST['size']}','1','1','0')");
-		header('Location: myprof.php?booking=success');
+		$db->query("INSERT INTO booking VALUES('{$bookid}','{$userid['user_id']}','p01','{$_POST['type']}','{$_POST['size']}','{$date}','1','0','0')");
+		header('Location: myprof.php?success');
 		exit();
 	}
 	else{
