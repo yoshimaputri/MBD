@@ -58,6 +58,7 @@
   			<div class="form-group">
   			<label class="font-weight-bold" for="username">Username</label>
       		<input class="form-control" type="text" id="username" name="username" placeholder="Your username..">
+          <input type="hidden" id="postid" name="postid" value="<?php echo $_POST['pesan']?>">
       		<br>
 <!-- 	    	<label class="font-weight-bold" for="event">Event</label>
       		<select class="form-control" id="event" name="event">

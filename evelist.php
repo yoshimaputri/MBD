@@ -70,7 +70,9 @@
 				<div class="col-md-6">
 					<h3><?php echo $row['post_title'];?></h3>
 					<p><?php echo $row['post_desc'];?></p> 
-					<button type="button" class="btn btn-danger" style="padding:0px 10 0px 10px;">PESAN</button>
+					<form action="book.php" method="post">
+					<button name="pesan" value="<?php echo $row['post_id'];?>" type="submit" class="btn btn-danger" style="padding:0px 10 0px 10px;">PESAN</button>
+					</form>
 				</div>
 
 				<div class="col-md-2 panel panel-default">
