@@ -64,29 +64,34 @@
 					$sql = "SELECT * FROM post LIMIT ";
 					$query = $link->query($sql.$limit_start.",".$limit);
 					while ($row = $query->fetch_assoc()) :?>
+				<div class="row" style="margin: 5px;">
 				<div class="col-md-2">
 					<img class="img-thumbnail float-left" src="img/thm.jpg"> </div>
 				<div class="col-md-6">
 					<h3><?php echo $row['post_title'];?></h3>
-					<p><?php echo $row['post_desc'];?></p> </div>
+					<p><?php echo $row['post_desc'];?></p> 
+					<button type="button" class="btn btn-danger" style="padding:0px 10 0px 10px;">PESAN</button>
+				</div>
+
 				<div class="col-md-2 panel panel-default">
 					<table class="table" style="border-radius: 6px;">
-						<thead class="thead-light">
+						<thead class="thead-light" style="text-align: center;">
 							<tr><th>Jadwal</th></tr>
 						</thead>
-						<tbody class="bg-warning">
+						<tbody class="bg-warning" style="color: black; font-weight: 600;">
 							<tr><td><?php echo $row['post_date'];?></td></tr>
 						</tbody>
 					</table></div>
 				<div class="col-md-2">
 					<table class="table">
-						<thead class="thead-light rounded">
+						<thead class="thead-light" style="text-align: center;">
 							<tr><th>Harga</th></tr>
 						</thead>
-						<tbody class="bg-warning">
+						<tbody class="bg-warning" style="color: black; font-weight: 600;">
 							<tr rows="3"><td><?php echo $row['post_place'];?></td></tr>
 						</tbody>
 					</table>
+				</div>
 				</div>
 				<?php endwhile;?>
 			</div>
