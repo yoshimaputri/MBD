@@ -54,26 +54,30 @@
   <br><br>
   <div class="container">
     <div class="row">
-      <div class="col-sm-4" style="margin-top: 25%;">
-        <a class="btn btn-danger btn-lg" value="Back" style="color: white;" href="cursor.php">Back</a>
+      <div class="col-sm-4" style="margin-top: 35%;">
+        <a class="btn btn-danger btn-lg" value="Back" style="color: white;" href="view.php">Back</a>
       </div>
       <div class="col-sm-4">
       <br><br><br>
-      <label for="name" class="font-weight-bold">Show the User Name that have been booked in Post 
+      <label for="name" class="font-weight-bold">Show ID Booking in month-
         <?php
           $link = mysqli_connect("localhost", "root", "", "fpmbd");
           if($link == false){
             die("ERROR: Could not connect. " . mysqli_connect_error());
           }
 
-          $value1 = $_POST['thispost'];
-          $sql = "CALL cursor2('$value1');";
-          print_r($value1);
+          $value1 = $_POST['bln1'];
+          $value2 = $_POST['high'];
+          $sql = "CREATE OR REPLACE VIEW booked AS SELECT book_id FROM booking WHERE EXTRACT(MONTH FROM book_time) = $value1 AND book_totalharga > $value2;";
+          echo $value1 . " and the total price is over " . $value2;
           $result = $link->query($sql);
           echo "</label>";
-          if ($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){?>
-              <button class="btn btn-success btn-lg" style="font-size: 30px;"><?php echo $row['user_name']?></button>;<?php
+          
+          $sql2 = "SELECT book_id from booked;";
+          $res2 = $link->query($sql2);
+          if ($res2->num_rows > 0){
+            while($row = $res2->fetch_assoc()){?>
+              <button class="btn btn-success btn-lg" style="font-size: 30px; margin: 5px;"><?php echo $row['book_id']?></button>;<br><?php
             }
           }
         ?>

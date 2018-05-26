@@ -54,30 +54,52 @@
   <br><br>
   <div class="container">
     <div class="row">
-      <div class="col-sm-4" style="margin-top: 25%;">
-        <a class="btn btn-danger btn-lg" value="Back" style="color: white;" href="cursor.php">Back</a>
+      <div class="col-sm-4" style="margin-top: 0%;">
+        <a class="btn btn-danger btn-lg" value="Back" style="color: white;" href="proc.php">Back</a>
       </div>
       <div class="col-sm-4">
       <br><br><br>
-      <label for="name" class="font-weight-bold">Show the User Name that have been booked in Post 
+      <label for="name" class="font-weight-bold">Update Total Price of Booking over  
         <?php
           $link = mysqli_connect("localhost", "root", "", "fpmbd");
           if($link == false){
             die("ERROR: Could not connect. " . mysqli_connect_error());
           }
-
-          $value1 = $_POST['thispost'];
-          $sql = "CALL cursor2('$value1');";
-          print_r($value1);
+          $value1 = $_POST['disc'];
+          $value2 = $_POST['high'];
+          $sql = "select book_id, book_totalharga from booking;";
+          echo $value2 . " with Discount " . $value1 . "%";
           $result = $link->query($sql);
           echo "</label>";
-          if ($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){?>
-              <button class="btn btn-success btn-lg" style="font-size: 30px;"><?php echo $row['user_name']?></button>;<?php
+
+          $sql1 = "CALL updatedisc($value1,$value2);";
+          $res = $link->query($sql1);
+          $sql2 = "select book_totalharga from booking;";
+          $res2 = $link->query($sql2);?>
+          <div class="row">
+                <table class="table table-light table-hover table-inverse">
+                  <thead>
+                    <tr>
+                      <th>Book ID</th>
+                      <th>Total Price After Discount</th>
+                      <th>Total Price After PPN</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+          <?php
+          if ($result->num_rows > 0 and $res2->num_rows > 0){
+            while($row = $result->fetch_assoc() and $row1 = $res2->fetch_assoc()){?>
+                    <tr>
+                      <td><?php echo $row['book_id']?></td>
+                      <td><?php echo $row['book_totalharga']?></td>
+                      <td><?php echo $row1['book_totalharga']?></td>
+                    </tr>
+              <?php
             }
-          }
-        ?>
-        
+          }?>
+          </tbody>
+                </table>
+              </div>
       </div>
       <div class="col-sm-4"></div>
     </div>

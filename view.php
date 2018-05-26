@@ -57,22 +57,22 @@
       <div class="col-sm-6">
         <h1 style="position: center; margin-left: 17%; margin-top: 4%; margin-bottom: 3%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">View 1</h1>
         <br><br>
-        <form action="proc-c.php" method="post" id="view">
+        <form action="view-c.php" method="post" id="view">
           <div class="form-group">
             <label for="name" class="font-weight-bold">Month's Post</label><br>
-            <select class="form-control">
-            	<option>January</option>
-            	<option>February</option>
-            	<option>March</option>
-            	<option>April</option>
-            	<option>May</option>
-            	<option>June</option>
-            	<option>July</option>
-            	<option>August</option>
-            	<option>September</option>
-            	<option>October</option>
-            	<option>November</option>
-            	<option>December</option>
+            <select class="form-control" name="bln">
+            	<option value="1">January</option>
+            	<option value="2">February</option>
+            	<option value="3">March</option>
+            	<option value="4">April</option>
+            	<option value="5">May</option>
+            	<option value="6">June</option>
+            	<option value="7">July</option>
+            	<option value="8">August</option>
+            	<option value="9">September</option>
+            	<option value="10">October</option>
+            	<option value="11">November</option>
+            	<option value="12">December</option>
             </select><br>
             <label for="name" class="font-weight-bold">Place</label><br>
             <input type="text" class="form-control" id="pl" name="pl" placeholder="Place that be held the event">
@@ -84,22 +84,22 @@
       <div class="col-sm-6">
         <h1 style="position: center; margin-left: 17%; margin-top: 4%; margin-bottom: 3%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">View 2</h1>
         <br><br>
-        <form action="proc-c.php" method="post" id="view">
+        <form action="view2-c.php" method="post" id="view">
           <div class="form-group">
             <label for="name" class="font-weight-bold">Month's Booking</label><br>
-            <select class="form-control">
-            	<option>January</option>
-            	<option>February</option>
-            	<option>March</option>
-            	<option>April</option>
-            	<option>May</option>
-            	<option>June</option>
-            	<option>July</option>
-            	<option>August</option>
-            	<option>September</option>
-            	<option>October</option>
-            	<option>November</option>
-            	<option>December</option>
+            <select class="form-control" name="bln1">
+            	<option value="1">January</option>
+            	<option value="2">February</option>
+            	<option value="3">March</option>
+            	<option value="4">April</option>
+            	<option value="5">May</option>
+            	<option value="6">June</option>
+            	<option value="7">July</option>
+            	<option value="8">August</option>
+            	<option value="9">September</option>
+            	<option value="10">October</option>
+            	<option value="11">November</option>
+            	<option value="12">December</option>
             </select><br>
             <label for="name" class="font-weight-bold">Over Total Price</label><br>
             <input type="text" class="form-control" id="high" name="high" placeholder="Minimum Total Price which wanna view">

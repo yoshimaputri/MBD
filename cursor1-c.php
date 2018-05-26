@@ -59,21 +59,21 @@
       </div>
       <div class="col-sm-4">
       <br><br><br>
-      <label for="name" class="font-weight-bold">Show the User Name that have been booked in Post 
+      <label for="name" class="font-weight-bold">Show the User Event that its Event Post was booking Over Price 
         <?php
           $link = mysqli_connect("localhost", "root", "", "fpmbd");
           if($link == false){
             die("ERROR: Could not connect. " . mysqli_connect_error());
           }
 
-          $value1 = $_POST['thispost'];
-          $sql = "CALL cursor2('$value1');";
-          print_r($value1);
+          $value = $_POST['cursor1'];
+          $sql = "CALL cursor2('$value');";
+          print_r($value);
           $result = $link->query($sql);
           echo "</label>";
           if ($result->num_rows > 0){
             while($row = $result->fetch_assoc()){?>
-              <button class="btn btn-success btn-lg" style="font-size: 30px;"><?php echo $row['user_name']?></button>;<?php
+              <button class="btn btn-success btn-lg" style="font-size: 30px;"><?php echo $row['uevent_name']?></button>;<?php
             }
           }
         ?>
