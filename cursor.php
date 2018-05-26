@@ -55,31 +55,39 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <h1 style="position: center; margin-left: 17%; margin-top: 4%; margin-bottom: 3%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Procedure 1</h1>
+        <h1 style="position: center; margin-left: 30%; margin-top: 4%; margin-bottom: 3%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Cursor 1</h1>
         <br><br>
-        <form action="proc-c.php" method="post" id="proc">
-          <div class="form-group">
-            <label for="name" class="font-weight-bold">PPN (%)</label><br>
-            <input type="text" class="form-control" id="ppn" name="ppn" placeholder="Percentage of PPN">
-            <label for="name" class="font-weight-bold">Under Price</label><br>
-            <input type="text" class="form-control" id="low" name="low" placeholder="Maximal Price that has PPN">
+        <form action="cursor1-c.php" method="post">
+        <label for="name" class="font-weight-bold">Show the User Event that its Event Post was booking Over Price :</label><br>
+            <input type="text" class="form-control" id="low" name="low">
             <br>
-            <input type="submit" name="submit" value="Submit">
-          </div>
+         <input type="submit" name="submit" value="Query">
         </form>
       </div>
       <div class="col-sm-6">
-        <h1 style="position: center; margin-left: 17%; margin-top: 4%; margin-bottom: 3%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Procedure 2</h1>
+        <h1 style="position: center; margin-left: 30%; margin-top: 4%; margin-bottom: 3%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Cursor 2</h1>
         <br><br>
-        <form action="proc-c.php" method="post" id="proc">
-          <div class="form-group">
-            <label for="name" class="font-weight-bold">Discount (%)</label><br>
-            <input type="text" class="form-control" id="disc" name="disc" placeholder="Percentage of Discount">
-            <label for="name" class="font-weight-bold">Over Price</label><br>
-            <input type="text" class="form-control" id="high" name="high" placeholder="Minimum Price that has Discount">
-            <br>
-            <input type="submit" name="submit" value="Submit">
-          </div>
+        <form action="cursor2-c.php" method="post">
+        <label for="name" class="font-weight-bold">Show the User Name that have been booked in Post :</label><br>
+        <?php
+          $link = mysqli_connect("localhost", "root", "", "fpmbd");
+            if($link == false){
+              die("ERROR: Could not connect. " . mysqli_connect_error());
+            }
+            $sql = "SELECT post_title from post;";
+            $result = $link->query($sql);
+
+            if ($result->num_rows > 0){
+            echo "<select name='thispost'>";
+            while($row = $result->fetch_assoc()){
+              echo "<option value='" . $row['post_title'] ."'>" . $row['post_title'] ."</option>";
+             }
+            echo "</select>";
+            } else{
+              echo "0 result";
+            }
+          ?>
+         <input type="submit" name="submit" value="Query">
         </form>
       </div>
     </div>

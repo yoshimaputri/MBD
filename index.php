@@ -14,7 +14,6 @@
 		<ul class="navbar-nav">
         <li><a class="active" href="index.php" id="home">Home</a></li>
         <li><a class="" href="evelist.php" id="evlist">Event List</a></li>
-        <li><a class="" href="book.php" id="book">Booking</a></li>
         <li><a class="" href="myprof.php" id="myprof">My Profile</a></li>
         <li>
         	<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Query Menus</a>

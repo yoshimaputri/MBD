@@ -13,7 +13,6 @@
 		<ul class="navbar-nav">
         <li><a class="" href="index.php" id="home">Home</a></li>
         <li><a class="" href="evelist.php" id="evlist">Event List</a></li>
-        <li><a class="active" href="book.php" id="book">Booking</a></li>
         <li><a class="" href="myprof.php" id="myprof">My Profile</a></li>
         <li>
         	<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Query Menus</a>
@@ -59,12 +58,6 @@
   			<label class="font-weight-bold" for="username">Username</label>
       		<input class="form-control" type="text" id="username" name="username" placeholder="Your username..">
           <input type="hidden" id="postid" name="postid" value="<?php echo $_POST['pesan']?>">
-      		<br>
-<!-- 	    	<label class="font-weight-bold" for="event">Event</label>
-      		<select class="form-control" id="event" name="event">
-        	<option value="food_truck_festival">Food Truck Festival</option>
-        	<option value="campus_fair">Campus Fair</option>
-      		</select> -->
       		<br>
       		<label class="font-weight-bold" for="size">Stand Size</label>
       		<select class="form-control" id="size" name="size">

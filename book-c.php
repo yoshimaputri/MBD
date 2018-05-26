@@ -20,7 +20,7 @@
 		$bookid = "b".$data['total'];
 		$date = date('Y-m-d');
 		$_SESSION['book']=true;
-		$db->query("INSERT INTO booking VALUES('{$bookid}','{$userid['user_id']}','{$_POST['postid']}','{$_POST['type']}','{$_POST['size']}','{$date}','1','0','0')");
+		$db->query("INSERT INTO booking VALUES('{$bookid}','{$userid['user_id']}','{$_POST['postid']}','{$_POST['type']}','{$_POST['size']}','{$date}','1','0','{$target_file}','file_get_contents($tmp)','0')");
 		header('Location: myprof.php?success');
 		exit();
 	}

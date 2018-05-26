@@ -6,16 +6,15 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+	<!-- <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet"> -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
 </head>
 <body id="body-index">
 	<nav class="navbar navbar-expand-sm fixed-top" id="navbar" style="padding: 0;">
 		<ul class="navbar-nav">
         <li><a class="" href="index.php" id="home">Home</a></li>
         <li><a class="" href="evelist.php" id="evlist">Event List</a></li>
-        <li><a class="" href="book.php" id="book">Booking</a></li>
         <li><a class="" href="myprof.php" id="myprof">My Profile</a></li>
         <li>
         	<a class="nav-link dropdown-toggle active" href="#" id="navbardrop" data-toggle="dropdown">Query Menus</a>
