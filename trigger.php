@@ -35,6 +35,7 @@
 	          <a class="dropdown-item activestate" href="trigger.php">Trigger</a>
 	          <a class="dropdown-item" href="function.php">Function</a>
 	          <a class="dropdown-item" href="proc.php">Procedure</a>
+	          <a class="dropdown-item" href="index-query.php">Index</a>
 	          <a class="dropdown-item" href="view.php">View</a>
 	          <a class="dropdown-item" href="join.php">Join</a>
 	          <a class="dropdown-item" href="cursor.php">Cursor</a>         
@@ -66,10 +67,12 @@
   		if($link == false){
       		die("ERROR: Could not connect. " . mysqli_connect_error());
   		}
-  		?><br><?php
-    
-  		$sql = "SELECT date_log, trigger_s, post_id, uevent_id, post_title, post_date, post_place FROM post_log ORDER BY date_log";
-  		$result = $link->query($sql);
+  		?><br>x<?php
+  					$page = (isset($_GET['page']))? $_GET['page'] : 1;
+					$limit = 5;
+					$limit_start = ($page - 1) * $limit;
+					$sql = "SELECT * FROM post_log ORDER BY date_log";
+					$query = $link->query($sql);
   	?>
   		<div class="container">
   			<h1 style="position: center; margin-top: 1%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">POST - LOG</h1>
@@ -89,8 +92,8 @@
 			    </thead>
 			    <tbody>
 			<?php
-			    if ($result->num_rows > 0){
-			    	while($row = $result->fetch_assoc()){
+			    if ($query->num_rows > 0){
+			    	while($row = $query->fetch_assoc()){
 			    	echo "<tr>";
 			        	echo "<td>" . $row["date_log"] . "</td>";
 			        	echo "<td>" . $row["trigger_s"] . "</td>";
@@ -108,11 +111,16 @@
 
 		    	?></tbody><?php
 		  	?></table><?php
-		  	?></div><?php
+		  	?></div>
+		
+		 <?php
+		 	$page = (isset($_GET['page']))? $_GET['page'] : 1;
+			$limit = 5;
+			$limit_start = ($page - 1) * $limit;
+  			$sql = "SELECT * FROM book_log ORDER BY date_log LIMIT";
+  			$result = $link->query($sql.$limit_start.",".$limit);
+  			?>
 
-  		$sql = "SELECT date_log, trigger_s, book_id, u.`user_name`, post_id, t.`type_name`, size_id, book_time, book_totalharga, book_status FROM book_log, USER u, type_stand t WHERE book_log.`type_id` = t.`type_id` AND book_log.`user_id` = u.`user_id` ORDER BY date_log";
-  		$result = $link->query($sql);
-  	?>
   			<h1 style="position: center; margin-top: 1%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">BOOKING - LOG</h1>
   			<div class="row">
   			<table class="table table-light table-hover table-inverse">
@@ -157,8 +165,60 @@
 		    	?></tbody><?php
 		  	?></table><?php
 		  	?></div><?php
-		?></div><?php
+		?></div>  <nav aria-label="Page navigation" style="margin-bottom: 10%;margin-top: 10px;">
+		  <ul class="pagination justify-content-center">
+		  	<!-- LINK FIRST AND PREV -->
+		        <?php
+		        if($page == 1){ // Jika page adalah page ke 1, maka disable link PREV
+		        ?>
+		          <li class="disabled"><a class="page-link" href="#">First</a></li>
+		          <li class="disabled"><a class="page-link" href="#">&laquo;</a></li>
+		        <?php
+		        }else{ // Jika page bukan page ke 1
+		          $link_prev = ($page > 1)? $page - 1 : 1;
+		        ?>
+		          <li><a class="page-link" href="trigger.php?page=1">First</a></li>
+		          <li><a class="page-link" href="trigger.php?page=<?php echo $link_prev; ?>">&laquo;</a></li>
+		        <?php
+		        }?>
+		        <!-- LINK NUMBER -->
+		        <?php
+		        // Buat query untuk menghitung semua jumlah data
+		        $sql2 = "SELECT COUNT(*) AS jumlah FROM book_log";
+		        $query2 = $link->query($sql2);
+		        $get_jumlah = $query2->fetch_assoc();
+		        $jumlah_page = ceil($get_jumlah['jumlah'] / $limit); // Hitung jumlah halamannya
+		        $jumlah_number = 3; // Tentukan jumlah link number sebelum dan sesudah page yang aktif
+		        $start_number = ($page > $jumlah_number)? $page - $jumlah_number : 1; // Untuk awal link number
+		        $end_number = ($page < ($jumlah_page - $jumlah_number))? $page + $jumlah_number : $jumlah_page; // Untuk akhir link number
+		        
+		        for($i = $start_number; $i <= $end_number; $i++){
+		          $link_active = ($page == $i)? ' class="active"' : '';
+		        ?>
+		          <li class="page-item" <?php echo $link_active; ?>><a class="page-link" href="trigger.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+		        <?php
+		        }?>
+		        
+		        <!-- LINK NEXT AND LAST -->
+		        <?php
+		        // Jika page sama dengan jumlah page, maka disable link NEXT nya
+		        // Artinya page tersebut adalah page terakhir 
+		        if($page == $jumlah_page){ // Jika page terakhir
+		        ?>
+		          <li class="disabled"><a class="page-link" href="#">&raquo;</a></li>
+		          <li class="disabled"><a class="page-link" href="#">Last</a></li>
+		        <?php
+		        }else{ // Jika Bukan page terakhir
+		          $link_next = ($page < $jumlah_page)? $page + 1 : $jumlah_page;
+		        ?>
+		          <li><a class="page-link" href="trigger.php?page=<?php echo $link_next; ?>">&raquo;</a></li>
+		          <li><a class="page-link" href="trigger.php?page=<?php echo $jumlah_page; ?>">Last</a></li>
+		        <?php
+		        } ?>
+		  </ul>
+		</nav>
 
+	<?php
   		mysqli_close($link);
 	?>
 

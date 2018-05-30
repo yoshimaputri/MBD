@@ -33,7 +33,7 @@
 	          <a class="dropdown-item" href="trigger.php">Trigger</a>
 	          <a class="dropdown-item" href="function.php">Function</a>
 	          <a class="dropdown-item" href="proc.php">Procedure</a>
-	          <a class="dropdown-item" href="index-query.php">Index
+	          <a class="dropdown-item" href="index-query.php">Index</a>
 	          <a class="dropdown-item" href="view.php">View</a>
 	          <a class="dropdown-item" href="join.php">Join</a>
 	          <a class="dropdown-item" href="cursor.php">Cursor</a>         
