@@ -66,7 +66,7 @@
         <br><br>
         <form action="cursor1-c.php" method="post">
         <label for="name" class="font-weight-bold">Show the User Event that its Event Post was booking Over Price :</label><br>
-            <input type="text" class="form-control" id="low" name="cursor1">
+            <input type="text" class="form-control" id="low" name="cursor1" placeholder="Enter the minimum booking price">
             <br>
          <input type="submit" name="submit" value="Query">
         </form>
