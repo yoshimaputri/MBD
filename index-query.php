@@ -61,7 +61,6 @@
   </div>
 </nav>
 	<br>
-
 	<?php
 		$link = mysqli_connect("localhost", "root", "", "fpmbd");
   		if($link == false){
@@ -75,7 +74,20 @@
   		$result = $link->query($sql.$limit_start.",".$limit);
   	?>
   		<div class="container">
-  			<h1 style="position: center; margin-top: 1%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Index I</h1>
+  			<div class="row">
+  				<div class="col-md-4">
+  					<h1 style="position: center; margin-top: 1%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Index I</h1>
+  				</div>
+  				<div class="col-md-3"></div>
+  				<div class="col-md-3">
+  					<form action="index-query1-c.php" method="post">
+            			<input type="text" class="form-control" id="low" name="index1" placeholder="Search">
+            	</div>
+            	<div class="col-md-2">
+			       		<input type="submit" class="btn btn-danger" name="submit" value="Query">
+        			</form>
+        		</div>
+  			</div>
   			<div class="row">
   			<table class="table table-light table-hover table-inverse" id="example">
 			    <thead>
@@ -106,8 +118,8 @@
 				}
 
 		    	?></tbody><?php
-		  	?></table><?php
-		  	?></div>
+		  	?></table>
+		  </div>
 		  	<nav aria-label="Page navigation" style="margin-bottom: 10%;margin-top: 10px;">
 		  <ul class="pagination justify-content-center">
 		  	<!-- LINK FIRST AND PREV -->
@@ -167,7 +179,20 @@
 		$sql = "SELECT book_status, user_id, post_id, type_id, size_id, book_time, book_quantity, book_totalharga FROM booking ORDER BY book_status LIMIT ";
   		$result = $link->query($sql.$limit_start.",".$limit);
   		?>
-  			<h1 style="position: center; margin-top: 1%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Index II</h1>
+  		<div class="row">
+  			<div class="col-md-4">
+  					<h1 style="position: center; margin-top: 1%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Index II</h1>
+  				</div>
+  				<div class="col-md-3"></div>
+  				<div class="col-md-3">
+  					<form action="index-query2-c.php" method="post">
+            			<input type="text" class="form-control" id="low" name="index2" placeholder="Search">
+            	</div>
+            	<div class="col-md-2">
+			       		<input type="submit" class="btn btn-danger" name="submit" value="Query">
+        			</form>
+        		</div>
+        </div>
   			<div class="row">
   			<table class="table table-light table-hover table-inverse">
 			    <thead>
