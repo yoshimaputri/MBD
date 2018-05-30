@@ -77,10 +77,14 @@
 			$db = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
 			$result = $db->query('SELECT * FROM user WHERE user_name = "'.$_SESSION['username'].'" or user_name = "'.$_COOKIE['username'].'"');
 
-			$res = $db->query('SELECT booking.book_id, booking.book_id, booking.book_id, booking.book_imgpath FROM booking, USER WHERE booking.`user_id` = user.`user_id` AND user_name = "'.$_SESSION['username'].'" or user_name = "'.$_COOKIE['username'].'"'); ?>
+			$res = $db->query('SELECT book_id,book_time,post_id,type_id,size_id,book_quantity,book_totalharga, book_imgpath FROM booking, USER WHERE booking.`user_id` = user.`user_id` AND (user_name = "'.$_SESSION['username'].'" or user_name = "'.$_COOKIE['username'].'")'); 
+			$co = $_COOKIE['username'];
+			$se = $_SESSION['username'];
+			?>
 			<table style="font-size: 30px; padding: 2%; margin-left: 12%; color: white; margin-right: 15%;">
 			<?php
 			while($row = mysqli_fetch_array($result)){
+				//echo $co; echo $se;
 				echo "<tr>";
 				echo "<td>User ID";
 				echo "<td> " . $row['user_id'] . "</td>";
@@ -113,16 +117,24 @@
 				<p style="font-size: 30px; color: white; margin-left: 5%;">Your Booking :</p>
 			<?php
 				echo "<tr>";
-				echo "<td>Event</td>";
-				echo "<td>Stand Size</td>";
-				echo "<td>Product Type</td>";
+				echo "<td>Book ID</td>";
+				echo "<td>Book Time</td>";
+				echo "<td>Post ID</td>";
+				echo "<td>Type ID</td>";
+				echo "<td>Size</td>";
+				echo "<td>Quantity</td>";
+				echo "<td>Total Harga</td>";
 				echo "<td>Product Photos</td>";
 				echo "</tr>";
 			while($row2 = mysqli_fetch_array($res)){
 				echo "<tr>";
-				echo "<td>" . $row2['post_title'] . "</td>";
+				echo "<td>" . $row2['book_id'] . "</td>";
+				echo "<td>" . $row2['book_time'] . "</td>";
+				echo "<td>" . $row2['post_id'] . "</td>";
+				echo "<td>" . $row2['type_id'] . "</td>";
 				echo "<td>" . $row2['size_id'] . "</td>";
-				echo "<td>" . $row2['type_name'] . "</td>";
+				echo "<td>" . $row2['book_quantity'] . "</td>";
+				echo "<td>" . $row2['book_totalharga'] . "</td>";
 				echo "<td><img src='" . $row2['book_imgpath'] . "' style='width: 30%;'><a href='download.php?download'>Download images</a></td>";
 				echo "</tr>";
 			}
