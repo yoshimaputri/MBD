@@ -22,7 +22,7 @@
 	        <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="evelist.php">Event List</a>
+	        <a class="nav-link" href="trigger.php">Event List</a>
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="myprof.php">My Profile</a>
@@ -67,9 +67,11 @@
       		die("ERROR: Could not connect. " . mysqli_connect_error());
   		}
   		?><br><?php
-    
-  		$sql = "SELECT post_date, post_id, uevent_id, post_title, post_place, post_desc FROM post ORDER BY post_date;";
-  		$result = $link->query($sql);
+    	$page = (isset($_GET['page']))? $_GET['page'] : 1;
+		$limit = 5;
+		$limit_start = ($page - 1) * $limit;
+		$sql = "SELECT post_date, post_id, uevent_id, post_title, post_place, post_desc FROM post ORDER BY post_date LIMIT ";
+  		$result = $link->query($sql.$limit_start.",".$limit);
   	?>
   		<div class="container">
   			<div class="row">
@@ -116,12 +118,67 @@
 				}
 
 		    	?></tbody><?php
-		  	?></table><?php
-		  	?></div><?php
-
-  		$sql = "SELECT book_status, user_id, post_id, type_id, size_id, book_time, book_quantity, book_totalharga FROM booking ORDER BY book_status;";
-  		$result = $link->query($sql);
-  	?>
+		  	?></table>
+		  </div>
+		  	<nav aria-label="Page navigation" style="margin-bottom: 10%;margin-top: 10px;">
+		  <ul class="pagination justify-content-center">
+		  	<!-- LINK FIRST AND PREV -->
+		        <?php
+		        if($page == 1){ // Jika page adalah page ke 1, maka disable link PREV
+		        ?>
+		          <li class="disabled"><a class="page-link" href="#">First</a></li>
+		          <li class="disabled"><a class="page-link" href="#">&laquo;</a></li>
+		        <?php
+		        }else{ // Jika page bukan page ke 1
+		          $link_prev = ($page > 1)? $page - 1 : 1;
+		        ?>
+		          <li><a class="page-link" href="index-query.php?page=1">First</a></li>
+		          <li><a class="page-link" href="index-query.php?page=<?php echo $link_prev; ?>">&laquo;</a></li>
+		        <?php
+		        }?>
+		        <!-- LINK NUMBER -->
+		        <?php
+		        // Buat query untuk menghitung semua jumlah data
+		        $sql2 = "SELECT COUNT(*) AS jumlah FROM post";
+		        $query2 = $link->query($sql2);
+		        $get_jumlah = $query2->fetch_assoc();
+		        $jumlah_page = ceil($get_jumlah['jumlah'] / $limit); // Hitung jumlah halamannya
+		        $jumlah_number = 3; // Tentukan jumlah link number sebelum dan sesudah page yang aktif
+		        $start_number = ($page > $jumlah_number)? $page - $jumlah_number : 1; // Untuk awal link number
+		        $end_number = ($page < ($jumlah_page - $jumlah_number))? $page + $jumlah_number : $jumlah_page; // Untuk akhir link number
+		        
+		        for($i = $start_number; $i <= $end_number; $i++){
+		          $link_active = ($page == $i)? ' class="active"' : '';
+		        ?>
+		          <li class="page-item" <?php echo $link_active; ?>><a class="page-link" href="index-query.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+		        <?php
+		        }?>
+		        
+		        <!-- LINK NEXT AND LAST -->
+		        <?php
+		        // Jika page sama dengan jumlah page, maka disable link NEXT nya
+		        // Artinya page tersebut adalah page terakhir 
+		        if($page == $jumlah_page){ // Jika page terakhir
+		        ?>
+		          <li class="disabled"><a class="page-link" href="#">&raquo;</a></li>
+		          <li class="disabled"><a class="page-link" href="#">Last</a></li>
+		        <?php
+		        }else{ // Jika Bukan page terakhir
+		          $link_next = ($page < $jumlah_page)? $page + 1 : $jumlah_page;
+		        ?>
+		          <li><a class="page-link" href="index-query.php?page=<?php echo $link_next; ?>">&raquo;</a></li>
+		          <li><a class="page-link" href="index-query.php?page=<?php echo $jumlah_page; ?>">Last</a></li>
+		        <?php
+		        } ?>
+		  </ul>
+		</nav>
+		<?php
+  		$page = (isset($_GET['page']))? $_GET['page'] : 1;
+		$limit = 5;
+		$limit_start = ($page - 1) * $limit;
+		$sql = "SELECT book_status, user_id, post_id, type_id, size_id, book_time, book_quantity, book_totalharga FROM booking ORDER BY book_status LIMIT ";
+  		$result = $link->query($sql.$limit_start.",".$limit);
+  		?>
   		<div class="row">
   			<div class="col-md-4">
   					<h1 style="position: center; margin-top: 1%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Index II</h1>
@@ -176,8 +233,60 @@
 		    	?></tbody><?php
 		  	?></table><?php
 		  	?></div><?php
-		?></div><?php
-
+		?></div>
+			<nav aria-label="Page navigation" style="margin-bottom: 10%;margin-top: 10px;">
+		  <ul class="pagination justify-content-center">
+		  	<!-- LINK FIRST AND PREV -->
+		        <?php
+		        if($page == 1){ // Jika page adalah page ke 1, maka disable link PREV
+		        ?>
+		          <li class="disabled"><a class="page-link" href="#">First</a></li>
+		          <li class="disabled"><a class="page-link" href="#">&laquo;</a></li>
+		        <?php
+		        }else{ // Jika page bukan page ke 1
+		          $link_prev = ($page > 1)? $page - 1 : 1;
+		        ?>
+		          <li><a class="page-link" href="index-query.php?page=1">First</a></li>
+		          <li><a class="page-link" href="index-query.php?page=<?php echo $link_prev; ?>">&laquo;</a></li>
+		        <?php
+		        }?>
+		        <!-- LINK NUMBER -->
+		        <?php
+		        // Buat query untuk menghitung semua jumlah data
+		        $sql2 = "SELECT COUNT(*) AS jumlah FROM booking";
+		        $query2 = $link->query($sql2);
+		        $get_jumlah = $query2->fetch_assoc();
+		        $jumlah_page = ceil($get_jumlah['jumlah'] / $limit); // Hitung jumlah halamannya
+		        $jumlah_number = 3; // Tentukan jumlah link number sebelum dan sesudah page yang aktif
+		        $start_number = ($page > $jumlah_number)? $page - $jumlah_number : 1; // Untuk awal link number
+		        $end_number = ($page < ($jumlah_page - $jumlah_number))? $page + $jumlah_number : $jumlah_page; // Untuk akhir link number
+		        
+		        for($i = $start_number; $i <= $end_number; $i++){
+		          $link_active = ($page == $i)? ' class="active"' : '';
+		        ?>
+		          <li class="page-item" <?php echo $link_active; ?>><a class="page-link" href="index-query.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+		        <?php
+		        }?>
+		        
+		        <!-- LINK NEXT AND LAST -->
+		        <?php
+		        // Jika page sama dengan jumlah page, maka disable link NEXT nya
+		        // Artinya page tersebut adalah page terakhir 
+		        if($page == $jumlah_page){ // Jika page terakhir
+		        ?>
+		          <li class="disabled"><a class="page-link" href="#">&raquo;</a></li>
+		          <li class="disabled"><a class="page-link" href="#">Last</a></li>
+		        <?php
+		        }else{ // Jika Bukan page terakhir
+		          $link_next = ($page < $jumlah_page)? $page + 1 : $jumlah_page;
+		        ?>
+		          <li><a class="page-link" href="index-query.php?page=<?php echo $link_next; ?>">&raquo;</a></li>
+		          <li><a class="page-link" href="index-query.php?page=<?php echo $jumlah_page; ?>">Last</a></li>
+		        <?php
+		        } ?>
+		  </ul>
+		</nav>	
+	<?php
   		mysqli_close($link);
 	?>
 
