@@ -67,47 +67,43 @@
     </ul>
   </div>
 </nav>
-	<h1 id="no-log" style="position: center; margin-left: 35%; margin-top: 14%; margin-bottom: 3%; color: white;">Please Login Before!</h1>
-	<h1 id="mp" style="position: center; margin-left: 40%; margin-top: 1%; color: white;">Profile Account</h1>
-	<span>
-	<form id="Edit" action="update.php" style="margin-left: 40%; margin-right: 40%; font-size: 15px;">
-		<input type="submit" value="Edit">
-	</form>
-	<form id="Delete" action="delete.php" style="margin-left: 40%; margin-right: 40%; font-size: 15px;">
-		<input type="submit" value="Delete">
-	</form>
-	</span>
+	<h1 id="no-log" style="position: center; margin-left: 35%; margin-top: 1%; margin-bottom: 3%; color: white;">Please Login Before!</h1>
+	<h1 id="mp" style="position: center; margin-left: 40%; margin-top: 1%; color: white;"><b>Profile Account</b></h1>
 	<br>
 	<div id="myprofile">
   		<?php
   			require('configuration.php');
 			session_start();
 			$db = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
-			$result = $db->query('SELECT * FROM users WHERE username = "'.$_SESSION['username'].'" or username = "'.$_COOKIE['username'].'"');
+			$result = $db->query('SELECT * FROM user WHERE user_name = "'.$_SESSION['username'].'" or user_name = "'.$_COOKIE['username'].'"');
 
-			$res = $db->query('SELECT * FROM booking WHERE username = "'.$_SESSION['username'].'" or username = "'.$_COOKIE['username'].'"'); ?>
+			$res = $db->query('SELECT booking.book_id, booking.book_id, booking.book_id, booking.book_imgpath FROM booking, USER WHERE booking.`user_id` = user.`user_id` AND user_name = "'.$_SESSION['username'].'" or user_name = "'.$_COOKIE['username'].'"'); ?>
 			<table style="font-size: 30px; padding: 2%; margin-left: 12%; color: white; margin-right: 15%;">
 			<?php
 			while($row = mysqli_fetch_array($result)){
 				echo "<tr>";
+				echo "<td>User ID";
+				echo "<td> " . $row['user_id'] . "</td>";
+				echo "</tr>";
+				echo "<tr>";
 				echo "<td>Username";
-				echo "<td> " . $row['username'] . "</td>";
+				echo "<td> " . $row['user_name'] . "</td>";
 				echo "</tr>";
 				echo "<tr>";
-				echo "<td>First Name";
-				echo "<td> " . $row['fname'] . "</td>";
-				echo "</tr>";
-				echo "<tr>";
-				echo "<td>Last Name";
-				echo "<td> " . $row['lname'] . "</td>";
+				echo "<td>Full Name";
+				echo "<td> " . $row['user_fullname'] . "</td>";
 				echo "</tr>";
 				echo "<tr>";
 				echo "<td>City";
-				echo "<td> " . $row['city'] . "</td>";
+				echo "<td> " . $row['user_city'] . "</td>";
+				echo "</tr>";
+				echo "<tr>";
+				echo "<td>Telp";
+				echo "<td> " . $row['user_telp'] . "</td>";
 				echo "</tr>";
 				echo "<tr>";
 				echo "<td>Email";
-				echo "<td> " . $row['email'] . "</td>";
+				echo "<td> " . $row['user_email'] . "</td>";
 				echo "</tr>";
 			}
 			?>
@@ -123,12 +119,11 @@
 				echo "<td>Product Photos</td>";
 				echo "</tr>";
 			while($row2 = mysqli_fetch_array($res)){
-				
 				echo "<tr>";
-				echo "<td>" . $row2['event'] . "</td>";
-				echo "<td>" . $row2['size'] . "</td>";
-				echo "<td>" . $row2['type'] . "</td>";
-				echo "<td><img src='" . $row2['imgpath'] . "' style='width: 30%;'><a href='download.php?download'>Download images</a></td>";
+				echo "<td>" . $row2['post_title'] . "</td>";
+				echo "<td>" . $row2['size_id'] . "</td>";
+				echo "<td>" . $row2['type_name'] . "</td>";
+				echo "<td><img src='" . $row2['book_imgpath'] . "' style='width: 30%;'><a href='download.php?download'>Download images</a></td>";
 				echo "</tr>";
 			}
 			?>
