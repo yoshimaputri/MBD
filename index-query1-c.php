@@ -48,30 +48,21 @@
 	</div>
 	<br>
 	<?php
-		$link = mysqli_connect("localhost", "root", "", "fpmbd");
-  		if($link == false){
-      		die("ERROR: Could not connect. " . mysqli_connect_error());
-  		}
-  		?><br><?php
-    
-  		$sql = "SELECT post_date, post_id, uevent_id, post_title, post_place, post_desc FROM post ORDER BY post_date;";
-  		$result = $link->query($sql);
-  	?>
+          $link = mysqli_connect("localhost", "root", "", "fpmbd");
+          if($link == false){
+            die("ERROR: Could not connect. " . mysqli_connect_error());
+          }
+
+          $value = $_POST['index1'];
+          $sql = "SELECT post_date, post_id, uevent_id, post_title, post_place, post_desc FROM post 
+          where post_date like '%$value%' or post_id like '%$value%' or uevent_id like '%$value%' or post_title like '%$value%' or post_place like '%$value%' or post_desc like '%$value%' ORDER BY post_date;";
+          
+          $result = $link->query($sql);
+          
+        ?>
   		<div class="container">
-  			<div class="row">
-  				<div class="col-md-4">
-  					<h1 style="position: center; margin-top: 1%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Index I</h1>
-  				</div>
-  				<div class="col-md-3"></div>
-  				<div class="col-md-3">
-  					<form action="index-query1-c.php" method="post">
-            			<input type="text" class="form-control" id="low" name="index1" placeholder="Search">
-            	</div>
-            	<div class="col-md-2">
-			       		<input type="submit" class="btn btn-danger" name="submit" value="Query">
-        			</form>
-        		</div>
-  			</div>
+  			<h1 style="position: center; margin-top: 1%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Index I</h1>
+  			<a href="index-query.php" class="btn btn-danger">Back</a>
   			<div class="row">
   			<table class="table table-light table-hover table-inverse" id="example">
 			    <thead>
@@ -104,65 +95,6 @@
 		    	?></tbody><?php
 		  	?></table><?php
 		  	?></div><?php
-
-  		$sql = "SELECT book_status, user_id, post_id, type_id, size_id, book_time, book_quantity, book_totalharga FROM booking ORDER BY book_status;";
-  		$result = $link->query($sql);
-  	?>
-  		<div class="row">
-  			<div class="col-md-4">
-  					<h1 style="position: center; margin-top: 1%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Index II</h1>
-  				</div>
-  				<div class="col-md-3"></div>
-  				<div class="col-md-3">
-  					<form action="index-query2-c.php" method="post">
-            			<input type="text" class="form-control" id="low" name="index2" placeholder="Search">
-            	</div>
-            	<div class="col-md-2">
-			       		<input type="submit" class="btn btn-danger" name="submit" value="Query">
-        			</form>
-        		</div>
-        </div>
-  			<div class="row">
-  			<table class="table table-light table-hover table-inverse">
-			    <thead>
-			     	<tr>
-			     		<th>Status</th>
-			     		<th>User_ID</th>
-			        	<th>Post_ID</th>
-			        	<th>Type</th>
-			        	<th>Size</th>
-			        	<th>Book Time</th>
-			        	<th>Quantity</th>
-			        	<th>Total Harga</th>
-			      	</tr>
-			    </thead>
-			    <tbody>
-			<?php
-			    if ($result->num_rows > 0){
-			    	while($row = $result->fetch_assoc()){
-			    	echo "<tr>";?>
-			    		<?php if($row["book_status"]==0) : ?><td><a href="#" class='btn btn-dark btn-sm'>Pending</a></td>
-			        	<?php elseif($row["book_status"]==1) : ?><td><a href="#" class='btn btn-success btn-sm'>Paid Off</a></td>
-			        	<?php elseif($row["book_status"]==2) : ?><td><a href="#" class='btn btn-danger btn-sm'>Cancel</a></td>
-			        	<?php endif;
-			        	echo "<td>" . $row["user_id"] . "</td>";
-			        	echo "<td>" . $row["post_id"] . "</td>";
-			        	echo "<td>" . $row["type_id"] . "</td>";
-			        	echo "<td>" . $row["size_id"] . "</td>";
-			        	echo "<td>" . $row["book_time"] . "</td>";
-			        	echo "<td>" . $row["book_quantity"] . "</td>";
-			        	echo "<td>" . $row["book_totalharga"] . "</td>";
-			        	
-			     echo "</tr>";
-			      	}
-			    } else{
-			    	echo "0 result";
-				}
-
-		    	?></tbody><?php
-		  	?></table><?php
-		  	?></div><?php
-		?></div><?php
 
   		mysqli_close($link);
 	?>

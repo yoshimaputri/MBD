@@ -48,80 +48,20 @@
 	</div>
 	<br>
 	<?php
-		$link = mysqli_connect("localhost", "root", "", "fpmbd");
-  		if($link == false){
-      		die("ERROR: Could not connect. " . mysqli_connect_error());
-  		}
-  		?><br><?php
-    
-  		$sql = "SELECT post_date, post_id, uevent_id, post_title, post_place, post_desc FROM post ORDER BY post_date;";
-  		$result = $link->query($sql);
-  	?>
+          $link = mysqli_connect("localhost", "root", "", "fpmbd");
+          if($link == false){
+            die("ERROR: Could not connect. " . mysqli_connect_error());
+          }
+
+          $value = $_POST['index2'];
+          $sql = "SELECT book_status, user_id, post_id, type_id, size_id, book_time, book_quantity, book_totalharga FROM booking where book_status like '%$value%' or user_id like '%$value%' or post_id like '%$value%' or type_id like '%$value%' or size_id like '%$value%' or book_time like '%$value%' or book_quantity like '%$value%' or book_totalharga like '%$value%' ORDER BY book_status;";
+          
+          $result = $link->query($sql);
+          
+        ?>
   		<div class="container">
-  			<div class="row">
-  				<div class="col-md-4">
-  					<h1 style="position: center; margin-top: 1%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Index I</h1>
-  				</div>
-  				<div class="col-md-3"></div>
-  				<div class="col-md-3">
-  					<form action="index-query1-c.php" method="post">
-            			<input type="text" class="form-control" id="low" name="index1" placeholder="Search">
-            	</div>
-            	<div class="col-md-2">
-			       		<input type="submit" class="btn btn-danger" name="submit" value="Query">
-        			</form>
-        		</div>
-  			</div>
-  			<div class="row">
-  			<table class="table table-light table-hover table-inverse" id="example">
-			    <thead>
-			     	<tr>
-			        	<th>Post_Date</th>
-			        	<th>Post_ID</th>
-			        	<th>Uevent_ID</th>
-			        	<th>Post_Title</th>
-			        	<th>Post_Place</th>
-			        	<th>Post_Desc</th>
-			      	</tr>
-			    </thead>
-			    <tbody>
-			<?php
-			    if ($result->num_rows > 0){
-			    	while($row = $result->fetch_assoc()){
-			    	echo "<tr>";
-			        	echo "<td>" . $row["post_date"] . "</td>";
-			        	echo "<td>" . $row["post_id"] . "</td>";
-			        	echo "<td>" . $row["uevent_id"] . "</td>";
-			        	echo "<td>" . $row["post_title"] . "</td>";
-			        	echo "<td>" . $row["post_place"] . "</td>";
-			        	?><td><a class="btn btn-danger" href="https://www.google.com"> Read More</a></td><?php
-			     echo "</tr>";
-			      	}
-			    } else{
-			    	echo "0 result";
-				}
-
-		    	?></tbody><?php
-		  	?></table><?php
-		  	?></div><?php
-
-  		$sql = "SELECT book_status, user_id, post_id, type_id, size_id, book_time, book_quantity, book_totalharga FROM booking ORDER BY book_status;";
-  		$result = $link->query($sql);
-  	?>
-  		<div class="row">
-  			<div class="col-md-4">
-  					<h1 style="position: center; margin-top: 1%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Index II</h1>
-  				</div>
-  				<div class="col-md-3"></div>
-  				<div class="col-md-3">
-  					<form action="index-query2-c.php" method="post">
-            			<input type="text" class="form-control" id="low" name="index2" placeholder="Search">
-            	</div>
-            	<div class="col-md-2">
-			       		<input type="submit" class="btn btn-danger" name="submit" value="Query">
-        			</form>
-        		</div>
-        </div>
+  			<h1 style="position: center; margin-top: 1%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Index II</h1>
+  			<a href="index-query.php" class="btn btn-danger">Back</a>
   			<div class="row">
   			<table class="table table-light table-hover table-inverse">
 			    <thead>
