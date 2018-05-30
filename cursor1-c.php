@@ -67,13 +67,13 @@
           }
 
           $value = $_POST['cursor1'];
-          $sql = "CALL cursor2('$value');";
+          $sql = "CALL cursor1('$value');";
           print_r($value);
           $result = $link->query($sql);
           echo "</label>";
           if ($result->num_rows > 0){
             while($row = $result->fetch_assoc()){?>
-              <button class="btn btn-success btn-lg" style="font-size: 30px;"><?php echo $row['uevent_name']?></button>;<?php
+              <button class="btn btn-success btn-lg" style="font-size: 30px; margin: 5%;"><?php echo $row['uevent_name']?></button>;<?php
             }
           }
         ?>
