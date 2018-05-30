@@ -58,6 +58,7 @@
         <h1 style="position: center; margin-left: 30%; margin-top: 4%; margin-bottom: 3%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Function 1</h1>
         <br><br>
         <form action="function1-c.php" method="post">
+          <label for="name" class="font-weight-bold">Show the Total Event which has been posted by User Event :</label><br>
         <?php
           $link = mysqli_connect("localhost", "root", "", "fpmbd");
             if($link == false){
@@ -83,6 +84,7 @@
         <h1 style="position: center; margin-left: 30%; margin-top: 4%; margin-bottom: 3%; color: white; text-shadow: 2px 2px black;" class="font-weight-bold">Function 2</h1>
         <br><br>
         <form action="function2-c.php" method="post">
+          <label for="name" class="font-weight-bold">Show the Total Transaction which has been booked by User :</label><br>
         <?php
           $link = mysqli_connect("localhost", "root", "", "fpmbd");
             if($link == false){
