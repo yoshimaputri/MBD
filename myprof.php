@@ -59,7 +59,7 @@
 				<a href="index.php" class="btn btn-danger">Login</a>
 			</li>
 			<style type="text/css">
-				#myprofile,#mp,#Edit,#Delete{
+				#keamanan,#keamanan2,#mp,#Edit,#Delete{
 					visibility: hidden;
 				}
 			</style>
@@ -82,7 +82,7 @@
 			$co = $_COOKIE['username'];
 			$se = $_SESSION['username'];
 			?>
-			<div class="col-md-6 mx-auto">
+			<div class="col-md-6 mx-auto" id="keamanan">
 			<table class="table table-light table-hover" id="example" style="border-radius: 10px;border-color: red;">
 			    <tbody>
 			<?php
@@ -117,7 +117,7 @@
 			</table>
 			</div>
 			<br><br>
-			<div class="col-md-12 mx-auto">
+			<div class="col-md-12 mx-auto" id="keamanan2">
 			<table class="table table-light table-hover table-inverse" id="example">
 			    <thead class="bg-danger">
 			     	<tr>
