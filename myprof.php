@@ -71,7 +71,7 @@
 	<h1 id="no-log" style="position: center; margin-left: 35%; margin-top: 1%; margin-bottom: 3%; color: white;">Please Login Before!</h1>
 	<h1 id="mp" style="position: center; margin-left: 40%; margin-top: 1%; color: white;"><b>Profile Account</b></h1>
 	<br>
-	<div id="myprofile">
+	<div class="container">
   		<?php
   			require('configuration.php');
 			session_start();
@@ -82,51 +82,58 @@
 			$co = $_COOKIE['username'];
 			$se = $_SESSION['username'];
 			?>
-			<table style="font-size: 30px; padding: 2%; margin-left: 12%; color: white; margin-right: 15%;">
+			<div class="col-md-6 mx-auto">
+			<table class="table table-light table-hover" id="example" style="border-radius: 10px;border-color: red;">
+			    <tbody>
 			<?php
 			while($row = mysqli_fetch_array($result)){
 				//echo $co; echo $se;
 				echo "<tr>";
-				echo "<td>User ID";
+				echo "<td class='bg-danger' style='color: white;font-weight: 500;'>User ID";
 				echo "<td> " . $row['user_id'] . "</td>";
 				echo "</tr>";
 				echo "<tr>";
-				echo "<td>Username";
+				echo "<td class='bg-danger' style='color: white;font-weight: 500;'>Username";
 				echo "<td> " . $row['user_name'] . "</td>";
 				echo "</tr>";
 				echo "<tr>";
-				echo "<td>Full Name";
+				echo "<td class='bg-danger' style='color: white;font-weight: 500;'>Full Name";
 				echo "<td> " . $row['user_fullname'] . "</td>";
 				echo "</tr>";
 				echo "<tr>";
-				echo "<td>City";
+				echo "<td class='bg-danger' style='color: white;font-weight: 500;'>City";
 				echo "<td> " . $row['user_city'] . "</td>";
 				echo "</tr>";
 				echo "<tr>";
-				echo "<td>Telp";
+				echo "<td class='bg-danger' style='color: white;font-weight: 500;'>Telp";
 				echo "<td> " . $row['user_telp'] . "</td>";
 				echo "</tr>";
 				echo "<tr>";
-				echo "<td>Email";
+				echo "<td class='bg-danger' style='color: white;font-weight: 500;'>Email";
 				echo "<td> " . $row['user_email'] . "</td>";
 				echo "</tr>";
 			}
-			?>
+			?></tbody>
 			</table>
+			</div>
 			<br><br>
-			<table style="font-size: 30px; color: white; padding: 2%; margin: 5%;">
+			<div class="col-md-12 mx-auto">
+			<table class="table table-light table-hover table-inverse" id="example">
+			    <thead class="bg-danger">
+			     	<tr>
+			        	<th>Book ID</th>
+			        	<th>Book Time</th>
+			        	<th>Post ID</th>
+			        	<th>Type ID</th>
+			        	<th>Size</th>
+			        	<th>Quantity</th>
+			        	<th>Total Harga</th>
+			        	<th>Product Photos</th>
+			      	</tr>
+			    </thead>
+			    <tbody>
 				<p style="font-size: 30px; color: white; margin-left: 5%;">Your Booking :</p>
 			<?php
-				echo "<tr>";
-				echo "<td>Book ID</td>";
-				echo "<td>Book Time</td>";
-				echo "<td>Post ID</td>";
-				echo "<td>Type ID</td>";
-				echo "<td>Size</td>";
-				echo "<td>Quantity</td>";
-				echo "<td>Total Harga</td>";
-				echo "<td>Product Photos</td>";
-				echo "</tr>";
 			while($row2 = mysqli_fetch_array($res)){
 				echo "<tr>";
 				echo "<td>" . $row2['book_id'] . "</td>";
@@ -136,11 +143,12 @@
 				echo "<td>" . $row2['size_id'] . "</td>";
 				echo "<td>" . $row2['book_quantity'] . "</td>";
 				echo "<td>" . $row2['book_totalharga'] . "</td>";
-				echo "<td><img src='" . $row2['book_imgpath'] . "' style='width: 30%;'><a href='download.php?download'>Download images</a></td>";
+				echo "<td> <img src='" . $row2['book_imgpath'] . "' style='width: 30%;'><a href='download.php?download'>Download images</a></td>";
 				echo "</tr>";
 			}
-			?>
+			?></tbody>
 			</table>
+			</div>
 			<br><br><br>
 			<?php
   		?>
